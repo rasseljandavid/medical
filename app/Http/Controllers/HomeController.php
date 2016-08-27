@@ -37,6 +37,8 @@ class HomeController extends Controller
 
     public function login(Request $request)
     {
+        $request->name      = trim($request->name);
+        $request->passcode  = trim($request->passcode);
 
         $patient = Patient::with('reports')
                         ->WhereRaw("CONCAT(`firstname`, ' ', `lastname`) ='{$request->name}' AND passcode='$request->passcode'")
@@ -54,6 +56,7 @@ class HomeController extends Controller
 
     public function search(Request $request)
     {
+        $request->term = trim($request->term);
         $patients_obj = Patient::where('firstname', 'like', "%{$request->term}%")
                            ->orWhere('lastname', 'like', "%{$request->term}%")
                            ->get();
