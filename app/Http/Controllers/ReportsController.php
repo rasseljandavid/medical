@@ -142,7 +142,7 @@ class ReportsController extends Controller
              return back()->with('alert-error', 'You need to add atleast one test.') 
                           ->withInput($request->input());
         }
-        
+
         $report->tests()->delete();
         foreach($data as $item) {
             $report->tests()->create($item);
@@ -203,10 +203,11 @@ class ReportsController extends Controller
         
         $email = $report->patient->email;
         Mail::send('reports.email', [], function ($message)  use ($email, $pdf) {
-            $message->attachData($pdf, 'invoice.pdf');
+            $message->attachData($pdf, 'result.pdf');
             $message->from('kelvineviota@gmail.com', 'Pathology');
-            $message->to("rasseljandavid@gmail.com");
-            $message->subject("Pathology Subject");
+            $message->to($email);
+            $message->subject("Online Pathology Test Report");
         });
+        return back()->with('alert-success', 'Email sent.');
     }
 }

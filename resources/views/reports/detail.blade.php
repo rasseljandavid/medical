@@ -8,6 +8,7 @@
             	Report for {{$report->patient->firstname}} {{$report->patient->firstname}} on
             	{{$report->reportDate}}
            	</h2>
+           	@include('errors.validation')
             <hr />
             <div class="table-responsive">
 	            <table class="table table-bordered">
