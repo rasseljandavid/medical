@@ -46,7 +46,9 @@
                     @unless (Auth::guest())
                     <li><a href="{{ url('/reports') }}">Reports</a></li>
                     <li><a href="{{ url('/patients') }}">Patients</a></li>
+                    @if(Auth::user()->id == 1)
                     <li><a href="{{ url('/users') }}">Operators</a></li>
+                    @endif
                     @endunless
                 </ul>
 

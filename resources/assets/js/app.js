@@ -76,6 +76,7 @@ window.jQuery(function () {
           // add the selected item
           terms.push( ui.item.value );
           this.value = terms;
+          $("#passcode").focus();
           return false;
         }
       });
